@@ -235,7 +235,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      207 字
+      967 字
     </span>
   
 
@@ -245,7 +245,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      12
        分钟
     </span>
   
@@ -290,13 +290,59 @@
 <h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h2><h3 id="本文所使用的环境："><a href="#本文所使用的环境：" class="headerlink" title="本文所使用的环境："></a>本文所使用的环境：</h3><blockquote>
 <ul>
 <li>windows10</li>
-<li><a href="mailto:&#x67;&#x69;&#x74;&#64;&#x32;&#x2e;&#x32;&#56;&#46;&#x30;">&#x67;&#x69;&#x74;&#64;&#x32;&#x2e;&#x32;&#56;&#46;&#x30;</a></li>
-<li><a href="mailto:&#x6e;&#x6f;&#x64;&#101;&#x2e;&#106;&#115;&#x40;&#118;&#49;&#x32;&#x2e;&#49;&#56;&#x2e;&#51;">&#x6e;&#x6f;&#x64;&#101;&#x2e;&#106;&#115;&#x40;&#118;&#49;&#x32;&#x2e;&#49;&#56;&#x2e;&#51;</a></li>
-<li><a href="mailto:&#104;&#101;&#120;&#111;&#x40;&#x34;&#x2e;&#50;&#x2e;&#48;">&#104;&#101;&#120;&#111;&#x40;&#x34;&#x2e;&#50;&#x2e;&#48;</a></li>
+<li><a href="mailto:&#x67;&#105;&#x74;&#x40;&#x32;&#46;&#x32;&#56;&#46;&#48;">&#x67;&#105;&#x74;&#x40;&#x32;&#46;&#x32;&#56;&#46;&#48;</a></li>
+<li><a href="mailto:&#110;&#x6f;&#x64;&#101;&#x2e;&#x6a;&#x73;&#x40;&#118;&#x31;&#50;&#46;&#49;&#56;&#x2e;&#x33;">&#110;&#x6f;&#x64;&#101;&#x2e;&#x6a;&#x73;&#x40;&#118;&#x31;&#50;&#46;&#49;&#56;&#x2e;&#x33;</a></li>
+<li><a href="mailto:&#104;&#101;&#x78;&#x6f;&#x40;&#x34;&#46;&#50;&#46;&#x30;">&#104;&#101;&#x78;&#x6f;&#x40;&#x34;&#46;&#50;&#46;&#x30;</a></li>
 </ul>
 </blockquote>
 <p>另外，需要注册github账号。</p>
-<h2 id="2-搭建github博客"><a href="#2-搭建github博客" class="headerlink" title="2. 搭建github博客"></a>2. 搭建github博客</h2><p>新建一个名为<code>你的github用户名.github.io</code>仓库。比如github的用户名是zhangsan，那就建一个zhangsan.github.io仓库，以后博客访问地址就是<code>http://zhangsan.github.io</code>。由此可见每个github账户最多只能创建一个这样的仓库。</p>
+<h2 id="2-创建github仓库"><a href="#2-创建github仓库" class="headerlink" title="2. 创建github仓库"></a>2. 创建github仓库</h2><p>新建一个名为<code>你的github用户名.github.io</code>仓库。比如github的用户名是zhangsan，那就建一个zhangsan.github.io仓库，以后博客访问地址就是<code>http://zhangsan.github.io</code>。由此可见每个github账户最多只能创建一个这样的仓库。</p>
+<p>注意：注册的邮箱一定要验证，否则不会成功</p>
+<h2 id="3-配置SSH-key"><a href="#3-配置SSH-key" class="headerlink" title="3. 配置SSH key"></a>3. 配置SSH key</h2><h3 id="3-1-为什么要配置SSH-key"><a href="#3-1-为什么要配置SSH-key" class="headerlink" title="3.1 为什么要配置SSH key?"></a>3.1 为什么要配置SSH key?</h3><p>因为提交代码要有github权限才可以，如果不配置，每次提交代码都会要求填写用户名和密码，又麻烦又不安全，所以使用ssh key来解决本地和服务器的连接问题。</p>
+<h3 id="3-2-怎么配置SSH-key"><a href="#3-2-怎么配置SSH-key" class="headerlink" title="3.2 怎么配置SSH key?"></a>3.2 怎么配置SSH key?</h3><p>首先检查本地是否已存在ssh密钥：密钥一般存放在用户下面，可以去找找看</p>
+<p>![image-20210202100132313](../../images/build a personal blog.assets/image-20210202100132313.png)</p>
+<p>如果没有， 说明第一次使用git，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;邮件地址&quot;</span><br></code></pre></td></tr></table></figure>
+<p>然后3次回车，最终生成上图所示的.ssh文件夹，将id_rsa.pub文件内容复制到github个人设置 → SSH and GPG keys → New SSH key 的key位置，title随便填，保存即可。</p>
+<h3 id="3-3-测试是否成功"><a href="#3-3-测试是否成功" class="headerlink" title="3.3 测试是否成功"></a>3.3 测试是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+<p>看到以下信息即表示SSH配置成功！</p>
+<p>![image-20210202100938484](../../images/build a personal blog.assets/image-20210202100938484.png)</p>
+<p>此外，还需要配置用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;zhangsan&quot;</span><br>git config --global user.email <span class="hljs-string">&quot;xxx@163.com&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="4-使用hexo搭建博客"><a href="#4-使用hexo搭建博客" class="headerlink" title="4. 使用hexo搭建博客"></a>4. 使用hexo搭建博客</h2><p>![image-20210202103709728](../../images/build a personal blog.assets/image-20210202103709728.png)</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://hexo.io/">http://hexo.io</a></p>
+<p><code>Hexo</code>是一个<code>简单</code>、<code>快速</code>、<code>强大</code>的基于Github Pages的博客发布工具</p>
+<p>可以调用Hexo命令将本地的md文档批量转化成html文件，然后将页面提交到github</p>
+<h3 id="4-1-hexo安装与初始化"><a href="#4-1-hexo安装与初始化" class="headerlink" title="4.1 hexo安装与初始化"></a>4.1 hexo安装与初始化</h3><p>使用<code>npm</code>安装hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g hexo<br></code></pre></td></tr></table></figure>
+<p>![npm安装hexo](../../images/build a personal blog.assets/npm安装hexo.png)</p>
+<p>hexo初始化：</p>
+<p>在你想存放代码的位置新建文件夹如orange，cd到这个目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init<br></code></pre></td></tr></table></figure>
+<p>![hexo init](../../images/build a personal blog.assets/hexo init.png)</p>
+<p>此时orange文件夹会生成文件夹和文件，执行命令生成html文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g<br></code></pre></td></tr></table></figure>
+<p>![hexo生成html](../../images/build a personal blog.assets/hexo生成html.png)</p>
+<p>执行命令本地启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo s<br></code></pre></td></tr></table></figure>
+<p>![启动服务](../../images/build a personal blog.assets/启动服务.png)</p>
+<p>浏览器访问<code>localhost:4000</code>，默认Hello World:</p>
+<p>![初页面](../../images/build a personal blog.assets/初页面.png)</p>
+<h3 id="4-2-修改主题"><a href="#4-2-修改主题" class="headerlink" title="4.2 修改主题"></a>4.2 修改主题</h3><p>官方主题：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<p>推荐简洁但不单调主题：<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">hexo-theme-fluid</a>、<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">hexo-theme-matery</a>(需要查看demo可以到github对应的README)</p>
+<p>下载主题，orange目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ git <span class="hljs-built_in">clone</span> https://github.com/fluid-dev/hexo-theme-fluid themes/fluid<br></code></pre></td></tr></table></figure>
+<p>下载后的主题都在themes文件夹下</p>
+<p>修改orange目录下的<code>_config.yml</code>文件，修改行</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">$</span> <span class="hljs-attr">theme:</span> <span class="hljs-string">fluid</span><br></code></pre></td></tr></table></figure>
+<p>然后执行<code>hexo g</code>重新生成，执行<code>hexo s</code>启动服务，访问<code>http://localhost:4000</code>(以下图片是改过背景图的)</p>
+<p>![image-20210202111645805](../../images/build a personal blog.assets/image-20210202111645805.png)</p>
+<h3 id="4-3-上传到github"><a href="#4-3-上传到github" class="headerlink" title="4.3 上传到github"></a>4.3 上传到github</h3><p>安装插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+<p>上传之前需要配置上传参数，打开orange文件夹下的_config.yml，添加内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">git@github.com:changchanghou/changchanghou.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">main</span><br></code></pre></td></tr></table></figure>
+<p>orange目录下打开git bash，执行<code>hexo d</code>命令即可</p>
+<p>上传之后等几分钟就可以访问<a target="_blank" rel="noopener" href="http://changchanghou.github.io/">http://changchanghou.github.io</a></p>
 
             </div>
             <hr>
